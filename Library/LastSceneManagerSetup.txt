@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/Flock-Base.unity
+- path: Assets/Scenes/Flock-Upgrade.unity
   isLoaded: 1
   isActive: 1
