@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Flock : MonoBehaviour {
+public class BoidB : MonoBehaviour {
 
-    public GameObject manager; // GlobalFlock instance
+    public GameObject manager; // FlockB instance
     public Vector2 location = Vector2.zero;
     public Vector2 velocity;
     Vector2 goalPos = Vector2.zero;
@@ -32,17 +32,17 @@ public class Flock : MonoBehaviour {
     void applyForce(Vector2 f)
     {
         Vector3 force = new Vector3(f.x, f.y, 0);
-        if(force.magnitude > manager.GetComponent<GlobalFlock>().maxForce)
+        if(force.magnitude > manager.GetComponent<FlockB>().maxForce)
         {
             force = force.normalized;
-            force *= manager.GetComponent<GlobalFlock>().maxForce;
+            force *= manager.GetComponent<FlockB>().maxForce;
         }
         this.GetComponent<Rigidbody2D>().AddForce(force);
 
-        if(this.GetComponent<Rigidbody2D>().velocity.magnitude > manager.GetComponent<GlobalFlock>().maxVelocity)
+        if(this.GetComponent<Rigidbody2D>().velocity.magnitude > manager.GetComponent<FlockB>().maxVelocity)
         {
             this.GetComponent<Rigidbody2D>().velocity = this.GetComponent<Rigidbody2D>().velocity.normalized;
-            this.GetComponent<Rigidbody2D>().velocity *= manager.GetComponent<GlobalFlock>().maxVelocity;
+            this.GetComponent<Rigidbody2D>().velocity *= manager.GetComponent<FlockB>().maxVelocity;
         }
 
         //re-orient the boid to the new resultant velocity
@@ -53,21 +53,26 @@ public class Flock : MonoBehaviour {
 
     Vector2 align()
     {
-        float neighbourDist = manager.GetComponent<GlobalFlock>().neighbourDistance;
+        float neighbourDist = manager.GetComponent<FlockB>().neighbourDistance;
         Vector2 sum = Vector2.zero;
         int count = 0;
-        foreach (GameObject other in manager.GetComponent<GlobalFlock>().allBoids)
+        foreach (GameObject other in manager.GetComponent<FlockB>().allBoids)
         {
             if (other == this.gameObject) continue;
 
-            float d = Vector2.Distance(location, other.GetComponent<Flock>().location);
+            float d = Vector2.Distance(location, other.GetComponent<BoidB>().location);
 
             if (d < neighbourDist)
             {
-                sum += other.GetComponent<Flock>().velocity;
+                sum += other.GetComponent<BoidB>().velocity;
                 count++;
             }
         }
+
+        // check they're not counting the wrong boids too
+        //Debug.Log(manager.name + " neighbour count: " + count); 
+        // result: count isn't exceeding 29, so they're not
+
         if (count > 0)
         {
             sum /= count;
@@ -80,17 +85,17 @@ public class Flock : MonoBehaviour {
 
     Vector2 cohesion()
     {
-        float neighbourDist = manager.GetComponent<GlobalFlock>().neighbourDistance;
+        float neighbourDist = manager.GetComponent<FlockB>().neighbourDistance;
         Vector2 sum = Vector2.zero;
         int count = 0;
-        foreach (GameObject other in manager.GetComponent<GlobalFlock>().allBoids)
+        foreach (GameObject other in manager.GetComponent<FlockB>().allBoids)
         {
             if (other == this.gameObject) continue;
 
-            float d = Vector2.Distance(location, other.GetComponent<Flock>().location);
+            float d = Vector2.Distance(location, other.GetComponent<BoidB>().location);
             if (d < neighbourDist)
             {
-                sum += other.GetComponent<Flock>().location;
+                sum += other.GetComponent<BoidB>().location;
                 count++;
             }
         }
@@ -109,12 +114,12 @@ public class Flock : MonoBehaviour {
         location = this.transform.position;
         velocity = this.GetComponent<Rigidbody2D>().velocity;
 
-        if(manager.GetComponent<GlobalFlock>().obedient && Random.Range(0,50)<= 1)
+        if(manager.GetComponent<FlockB>().obedient && Random.Range(0,50)<= 1)
         {
             Vector2 ali = align();
             Vector2 coh = cohesion();
             Vector2 gl;
-            if (manager.GetComponent<GlobalFlock>().seekGoal)
+            if (manager.GetComponent<FlockB>().seekGoal)
             {
                 gl = seek(goalPos);
                 currentForce = gl + ali + coh;
@@ -128,7 +133,7 @@ public class Flock : MonoBehaviour {
         }
 
         // willful boid resists peer pressure sometimes
-        if(manager.GetComponent<GlobalFlock>().willful && Random.Range(0,50) <= 1)
+        if(manager.GetComponent<FlockB>().willful && Random.Range(0,50) <= 1)
         {
             if(Random.Range(0,50) < 1) // change direction
             {
@@ -147,7 +152,7 @@ public class Flock : MonoBehaviour {
         ApplyRules();
         */
         flock();
-        goalPos = GlobalFlock.goalPos;
+        goalPos = FlockB.goalPos;
 	}
 
     void setRotation()
@@ -169,7 +174,7 @@ public class Flock : MonoBehaviour {
         Vector2 vavoid = Vector2.zero;
         float gSpeed = 0.1f;
 
-        Vector2 goalPos = GlobalFlock.goalPos;
+        Vector2 goalPos = FlockB.goalPos;
 
         float dist;
 
@@ -189,8 +194,8 @@ public class Flock : MonoBehaviour {
                         vavoid += (Vector2) (this.transform.position - go.transform.position);
                     }
 
-                    Flock anotherFlock = go.GetComponent<Flock>();
-                    gSpeed += anotherFlock.speed;
+                    BoidB anotherBoid = go.GetComponent<BoidB>();
+                    gSpeed += anotherBoid.speed;
                 }
             }
         }

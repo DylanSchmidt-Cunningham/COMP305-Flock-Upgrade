@@ -20,11 +20,11 @@ GameObject:
   m_Component:
   - component: {fileID: 4059750870338560}
   - component: {fileID: 212103053668688930}
-  - component: {fileID: 114731973200494402}
+  - component: {fileID: 114823139014921828}
   - component: {fileID: 50985585104473162}
   - component: {fileID: 58127698210773772}
   m_Layer: 0
-  m_Name: DIYBoid
+  m_Name: DIYBoid-Random2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -78,7 +78,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 1.28
---- !u!114 &114731973200494402
+--- !u!114 &114823139014921828
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -86,7 +86,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1570697921363600}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3868748762988e74cad0f41326ea2169, type: 3}
+  m_Script: {fileID: 11500000, guid: 146cbbf9e3a13794d830a753e426bb4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   manager: {fileID: 0}
@@ -127,7 +127,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 20781063a57e4594b85d8b04b9b6b925, type: 3}
-  m_Color: {r: 0.11724138, g: 1, b: 0, a: 1}
+  m_Color: {r: 0.15862082, g: 0, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

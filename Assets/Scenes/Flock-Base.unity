@@ -204,7 +204,7 @@ GameObject:
   - component: {fileID: 587738919}
   - component: {fileID: 587738920}
   m_Layer: 0
-  m_Name: BoidManager
+  m_Name: BoidManagerG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -231,16 +231,122 @@ MonoBehaviour:
   m_GameObject: {fileID: 587738918}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8fe7ba5e30a188f449c3058ac1f823c3, type: 3}
+  m_Script: {fileID: 11500000, guid: b4c912f4613e6a1499a715efa556ebd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   boidPrefab: {fileID: 1570697921363600, guid: 0e2d52fa085c30e44867e7a0b2f8110d, type: 2}
   numBoids: 30
   allBoids: []
-  range: {x: 15, y: 8, z: 5}
+  range: {x: 18, y: 9, z: 5}
   seekGoal: 1
+  mouseGoal: 1
   obedient: 1
   willful: 0
-  neighbourDistance: 50
+  neighbourDistance: 5
   maxForce: 0.5
   maxVelocity: 2
+  changeInterval: 100
+--- !u!1 &1000613060
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1000613062}
+  - component: {fileID: 1000613061}
+  m_Layer: 0
+  m_Name: BoidManagerR
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1000613061
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1000613060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d8d6c7c0e33a994cb821dad70fa54b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boidPrefab: {fileID: 1570697921363600, guid: fbfc57410c2ae9f43b94d12bb2f0000a, type: 2}
+  numBoids: 30
+  allBoids: []
+  range: {x: 18, y: 9, z: 5}
+  seekGoal: 1
+  mouseGoal: 0
+  obedient: 1
+  willful: 0
+  neighbourDistance: 10
+  maxForce: 0.5
+  maxVelocity: 3
+  changeInterval: 50
+--- !u!4 &1000613062
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1000613060}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1550317996
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1550317998}
+  - component: {fileID: 1550317997}
+  m_Layer: 0
+  m_Name: BoidManagerB
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1550317997
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1550317996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fe7ba5e30a188f449c3058ac1f823c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boidPrefab: {fileID: 1570697921363600, guid: ae834e6ced2257d4fab877fb3ee0c9d8, type: 2}
+  numBoids: 30
+  allBoids: []
+  range: {x: 18, y: 9, z: 5}
+  seekGoal: 1
+  mouseGoal: 0
+  obedient: 1
+  willful: 0
+  neighbourDistance: 5
+  maxForce: 0.5
+  maxVelocity: 2
+  changeInterval: 80
+--- !u!4 &1550317998
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1550317996}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
